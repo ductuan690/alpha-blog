@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    flash[:notice] = "The artiicle was deleted"
+    flash[:notice] = "The article was deleted"
     redirect_to articles_path
   end
 
@@ -59,5 +59,4 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :description)
     end
-
 end
