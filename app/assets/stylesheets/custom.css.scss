@@ -1,2 +1,22 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: asset-url('rubytraining.jpg');
+  background-size: cover;
+  height: 500px;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-signup {
+  background-color: #000;
+}
