@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.no-pad {
+  padding: 0px;
+}
+
+// Index Page
 .jumbotron {
   background-image: asset-url('rubytraining.jpg');
   background-size: cover;
@@ -25,6 +30,10 @@ footer {
   margin-top: 50px;
 }
 
-.no-pad {
-  padding: 0px;
+// Detail about each article template
+.article-description {
+  border-bottom: 1px solid #eaeaea;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 4px;
 }
