@@ -1,0 +1,40 @@
+<%= render 'shared/errors', obj: @user %>
+
+<div class="row">
+  <div class="col-xs-12">
+  <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        <%= f.label :username %><br>
+      </div>
+      <div class="col-sm-6">
+        <%= f.text_field :username, class: "form-control", placeholder: "Enter username", autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        <%= f.label :email %><br>
+      </div>
+      <div class="col-sm-6">
+        <%= f.email_field :email, class: "form-control", placeholder: "Enter email", autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        <%= f.label :password %><br>
+      </div>
+      <div class="col-sm-6">
+        <%= f.password_field :password, class: "form-control", placeholder: "Enter password", autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit(@user.new_record? ? "Sign up" : "Edit" , class: "btn btn-primary") %>
+      </div>
+    </div>
+  <% end %>
+    <div class="col-md-10 center">
+      <%= link_to '[ Back to Articles ]', articles_path %>
+    </div>
+  </div>
+</div>
