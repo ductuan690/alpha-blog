@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   validates :username, presence: true,
             uniqueness: { case_sensitive: false },
@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
             uniqueness: true,
             length: { maximum: 250 },
             format: { with: VALID_EMAIL_REGEX }
-  
+
   has_secure_password
 end

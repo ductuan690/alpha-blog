@@ -51,6 +51,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    flash[:danger] = "The user and all articles created by the user was successfully deleted"
+    redirect_to users_path
   end
 
   private
@@ -63,7 +65,7 @@ class UsersController < ApplicationController
     end
 
     def require_same_user
-      if current_user != @user and !current.user.admin?
+      if current_user != @user and !current_user.admin?
         flash[:danger] = "You just edit your own profile"
         redirect_to users_path
       end
