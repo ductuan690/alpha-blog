@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_user, except: [:new, :index, :show, :create]
+  before_action :require_same_user, only: [:edit, :update]
+
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -10,15 +13,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    if @user.nil?
+      flash[:danger] = "This user was not found"
+      redirect_to users_path
+    else
+      @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def create
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "Welcome #{@user.username} to Alpha Blog"
-      redirect_to articles_path
+#       flash[:success] = "Welcome #{@user.username} to Alpha Blog"
+#       redirect_to articles_path
     else
       render action: :new
     end
@@ -47,6 +55,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:username, :email, :password)
+    end
+
+    def require_same_user
+      if current_user != @user
+        flash[:danger] = "You just edit your own profile"
+        redirect_to users_path
+      end
     end
 
 end

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+  <%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        <%= f.label :email %><br>
+      </div>
+      <div class="col-sm-6">
+        <%= f.email_field :email, class: "form-control", placeholder: "Enter email", autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        <%= f.label :password %><br>
+      </div>
+      <div class="col-sm-6">
+        <%= f.password_field :password, class: "form-control", placeholder: "Enter password", autofocus: true, autocomplete: 'off' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Log in" , class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= link_to 'Create New Account',  signup_path %>
+      </div>
+    </div>
+  <% end %>
+    <div class="col-md-10 center">
+      <%= link_to '[ Back to Articles ]', articles_path %>
+    </div>
+  </div>
+</div>
