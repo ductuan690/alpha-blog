@@ -16,6 +16,18 @@
       <ul class="nav navbar-nav">
         <li><%= link_to 'Articles', articles_path %></li>
         <li><%= link_to 'Users', users_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.category_name, category_path(category) %></li>
+            <% end %>           
+            <% if logged_in? and current_user.admin? %>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Create New Category', new_category_path %></li>
+            <% end %>
+          </ul>
+        </li>
         <% if logged_in? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
@@ -28,7 +40,6 @@
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-          
         </li>
         <% end %>
       </ul>
@@ -42,7 +53,7 @@
         <% if logged_in? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><%= '(Admin)' if current_user.admin? %> <span class="caret"></span></a>
-          <ul class="dropdown-menu"> 
+          <ul class="dropdown-menu">
             <li><%= link_to 'Edit your profile', edit_user_path(current_user) %></li>
             <li><%= link_to 'View your profile', user_path(current_user) %></li>
             <li><a href="#">Something else here</a></li>

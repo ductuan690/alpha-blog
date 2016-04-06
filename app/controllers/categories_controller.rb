@@ -1,8 +1,18 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show]
   before_action :require_admin, only: [:new, :create]
 
   def new
     @category = Category.new
+  end
+
+  def show
+    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+
+    if @category.articles.empty?
+      flash.now[:danger] = "There is no articles in this category"
+    end
+      render 'articles/index'
   end
 
   def create
@@ -19,6 +29,10 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:category_name)
+    end
+
+    def set_category
+      @category = Category.find_by(id: params[:id])
     end
 
     def require_admin

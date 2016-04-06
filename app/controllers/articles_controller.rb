@@ -28,11 +28,16 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
 
-    if @article.save
-      flash[:success] = "The article was successfully created"
-      redirect_to article_path(@article)
-    else
+    if @article.categories.empty?
+      flash[:danger] = "Please choose at least one category"
       render action: :new
+    else
+      if @article.save
+        flash[:success] = "The article was successfully created"
+        redirect_to article_path(@article)
+      else
+        render action: :new
+      end
     end
   end
 
@@ -58,7 +63,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, category_ids: [])
     end
 
     def require_same_user
