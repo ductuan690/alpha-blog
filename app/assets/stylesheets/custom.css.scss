@@ -9,14 +9,22 @@
   padding: 0px;
 }
 
+.fix-size {
+  display: inline-block;
+}
+
 .input_checkbox input {
   width: auto !important
 }
 
 // Nav Template
 .category-edit-image {
-  max-width: 50%;
+  max-width: 100%;
   max-height: auto;
+}
+
+.categories-symbol-edit {
+  float: right;
 }
 
 // Home Page
