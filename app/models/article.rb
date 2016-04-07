@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
 
   def non_category
     if category_ids.empty?
-      errors.add(:category, "must be chose at least one")
+      errors.add(:categories, "must be chose at least one")
     end
   end
 
