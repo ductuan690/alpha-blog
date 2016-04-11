@@ -1,8 +1,7 @@
-<%= render 'shared/errors', obj: @user %>
-
 <div class="row">
   <div class="col-xs-12">
-  <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+  <%= form_for(@user, :html => {class: "form-horizontal", role: "form", :id => "users-edit-signup"}, remote: true) do |f| %>
+    <div id="user-signup-errors"></div>
     <div class="form-group">
       <div class="col-sm-2 control-label">
         <%= f.label :username %><br>

@@ -1,0 +1,2 @@
+$(docuemnt).find('#errors-form').remove();
+$(document).find('#articles-edit-new').prepend('<%= escape_javascript(render('shared/errors', obj: @article)) %>');

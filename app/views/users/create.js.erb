@@ -1,0 +1,2 @@
+$(document).find("#errors-form").remove();
+$(document).find("#users-edit-signup").prepend('<%= escape_javascript(render("shared/errors", obj: @user)) %>');

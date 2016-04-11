@@ -24,12 +24,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:success] = "Welcome #{@user.username} to Alpha Blog"
-      redirect_to user_path(@user)
-    else
-      render action: :new
+    respond_to do |format|
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:success] = "Welcome #{@user.username} to Alpha Blog"
+
+        format.js { render js: "window.location = '#{user_path(@user)}'" }
+        format.html { redirect_to user_path(@user) }
+      else
+        format.js { }
+        format.html { render action: :new }
+      end
     end
   end
 
@@ -41,11 +46,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      flash[:success] = "The #{@user.username} was successfully updated"
-      redirect_to articles_path
-    else
-      render action: :edit
+    respond_to do |format|
+      if @user.update(user_params)
+        flash[:success] = "The #{@user.username} was successfully updated"
+
+        format.js { render js: "window.location = '#{user_path(@user)}'" }
+        format.html { redirect_to user_path(@user) }
+      else
+        format.js {}
+        format.html { render action: :edit }
+      end
     end
   end
 

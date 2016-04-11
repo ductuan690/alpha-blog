@@ -18,11 +18,16 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      flash[:success] = "The category was successlly created"
-      redirect_to articles_path
-    else
-      render action: :new
+    respond_to do |format|
+      if @category.save
+        flash[:success] = "The category was successlly created"
+
+        format.js { render js: "window.location = '#{articles_path}'" }
+        format.html { redirect_to articles_path }
+      else
+        format.js {}
+        format.html { render action: :new }
+      end
     end
   end
 
@@ -30,11 +35,16 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update(category_params)
-      flash[:success] = "The category was successfully updated"
-      redirect_to articles_path
-    else
-      render action: :edit
+    respond_to do |format|
+      if @category.update(category_params)
+        flash[:success] = "The category was successfully updated"
+
+        format.js { render js: "window.location = '#{articles_path}'" }
+        format.html {  }
+      else
+        format.js {}
+        format.html { render action: :edit }
+      end
     end
   end
 

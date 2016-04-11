@@ -2,13 +2,14 @@
   <div class="well col-md-10 col-md-offset-1">
     <div class="center category-title-new">
       <% if @category.new_record? %>
-      <h1>Create zNew Category</h1>
+      <h1>Create New Category</h1>
       <% else %>
       <h1>Update The Category</h1>
       <% end %>
     </div>
     <%= render 'shared/errors', obj: @category %>
-  <%= form_for(@category, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+  <%= form_for(@category, :html => {class: "form-horizontal", role: "form", :id => "categories-edit-new"},
+                          remote: true) do |f| %>
     <div class="form-group">
       <div class="col-sm-2 control-label">
         <%= f.label :category_name %><br>

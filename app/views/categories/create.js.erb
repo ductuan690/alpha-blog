@@ -1,0 +1,2 @@
+$(document).find('#errors-form').remove();
+$(document).find('#categories-edit-new').prepend('<%= escape_javascript(render('shared/errors', obj: @category)) %>');

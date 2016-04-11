@@ -1,0 +1,2 @@
+$(document).find('#errors-messages').remove();
+$(document).find('#session-login').prepend('<%= escape_javascript(render('layouts/messages')) %>');
