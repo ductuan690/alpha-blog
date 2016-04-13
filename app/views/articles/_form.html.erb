@@ -1,6 +1,7 @@
 <div class="well row" id="article-new">
   <div class="col-xs-12">
-  <%= form_for(@article, :html => {class: "form-horizontal", role: "form", :id => "articles-edit-new"}, remote: true) do |f| %>
+  <%= form_for(@article, :html => { class: "form-horizontal", role: "form", :id => "articles-edit-new" },
+                         remote: true) do |f| %>
     <div class="form-group">
       <div class="col-sm-2 control-label">
         <%= f.label :title %><br>

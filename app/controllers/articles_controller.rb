@@ -57,9 +57,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
+    respond_to do |format|
+      flash.now[:danger] = "The article was deleted"
+       @articles = Article.paginate(page: params[:page], per_page: 4)
 
-    flash[:danger] = "The article was deleted"
-    redirect_to articles_path
+      format.js {}
+      format.html { render action: :articles_path }
+    end
   end
 
   private

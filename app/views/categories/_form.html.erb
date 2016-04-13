@@ -7,8 +7,7 @@
       <h1>Update The Category</h1>
       <% end %>
     </div>
-    <%= render 'shared/errors', obj: @category %>
-  <%= form_for(@category, :html => {class: "form-horizontal", role: "form", :id => "categories-edit-new"},
+    <%= form_for(@category, :html => {class: "form-horizontal", role: "form", :id => "categories-edit-new"},
                           remote: true) do |f| %>
     <div class="form-group">
       <div class="col-sm-2 control-label">
